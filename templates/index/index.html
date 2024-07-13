@@ -1,0 +1,84 @@
+{% extends '../base.html' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+
+
+<br><br><br>
+
+
+<div class="container">
+
+
+
+
+        <h1>Hi Welcome Again !!!</h1>
+
+        <br>
+        <div class="card" style="max-width: 450px; display: flex; flex-direction: row;">
+          <span style="font-size: large; padding: 30px;">Do you want create a new post?? </span>
+          <a style="margin-top: auto; margin-bottom: auto;" href="{% url 'create_post' %}"><button style="max-width: fit-content; height: fit-content;  padding: 10px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white;">Create a Post</button></a>
+        </div>
+
+    <br><br>
+
+
+
+
+    {% for i in md %}
+    <br>
+      <div class="card" style="max-width: 600px; border-radius: 10px;">
+        <div class="flex" style="display: flex;">
+          <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
+            <center><span style="color: white;">{{i.user.username|slice:1}}</span></center>
+          </div>
+          <strong style="margin-top: 30px;">@{{i.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
+          <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
+        </div>
+        <div class="texts">
+          <p style="text-wrap:pretty; margin: 30px;" dir="auto">
+            {{i.title}}
+          </p>
+          <p style="text-wrap:pretty; margin: 40px; " dir="auto">
+            {{i.desc}}
+          </p>
+        </div>
+        <div class="date-like">
+          <span style="margin: 10px;">{{i.date}}</span>
+
+            <span style="float:right; margin-right:10px;" class="like">
+              <form method="post" action="{% url 'like_post' i.id %}">
+                {% csrf_token %}
+                <button type="submit" style="border: none; background-color: white;">
+                    {% if i.id in liked_posts %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color:brown;" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color:brown;" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg>
+                    {% endif %}
+                </button>
+                <span>{{i.like_count}}</span>
+            </form>
+            </span>
+
+        </div>
+        <div class="border-top"></div><br>
+        <center>
+          <div class="comments" style="max-width: 550px; margin: 5px;">
+          <input type="text" class="form-control">
+        </div>
+      </center>
+        <br>
+      </div>
+    {% endfor %}
+
+</div>
+<br>
+
+
+
+
+{% endblock %}

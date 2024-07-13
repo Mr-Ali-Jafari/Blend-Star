@@ -1,0 +1,47 @@
+{% extends '../base.html' %}
+{% block title %}Create Post{% endblock %}
+{% block body %}
+<style>
+    .title{
+        text-align: auto;
+        width: 400px;
+        margin: 10px;
+    }
+    .desc{
+        text-align: auto;
+        width: 400px;
+        margin: 10px;
+    }
+</style>
+
+<br><br><br>
+
+<div class="container-fluid">
+    <br>
+    <center><h1>Create Post:</h1></center>
+    <div class="d-flex flex-wrap flex-md-nowrap">
+        <div class="card m-3" style="height: fit-content; color: rgb(48, 48, 48); width: fit-content; padding: 10px; background-color: rgb(168, 177, 186);">
+            <center><h1>Rules:</h1></center>
+            <ul>
+                <li>Discussions about religion are strictly prohibited</li>
+                <li>Discussing gender and 18+ is prohibited. If found, it will be checked for legality</li>
+                <li>As much as possible, try not to engage in political discussions (it is your responsibility)</li>
+                <li>If it is not about these 3 above, advertising on our social network is free</li>
+            </ul>
+        </div>
+
+        <form method="post" class="m-3">
+            {% csrf_token %}
+            <div class="form-style">
+                <label for="title">title:</label>
+                {{form.title}} <br><br>
+                <label for="desc">description:</label>
+                {{form.desc}} <br>
+                <center><input style="background-color: rgb(61, 61, 212); color: white;" type="submit" class="btn" value="Submit Post"></center>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
