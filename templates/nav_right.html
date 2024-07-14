@@ -1,0 +1,63 @@
+<style>
+.side-bar{
+    position: absolute;
+    height: fit-content;
+    background-color: whitesmoke;
+    width: 300px;
+    margin-top: 40px;
+    right: 0;
+    margin-right: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 14px white;
+}
+
+li{
+    list-style: none;
+    margin-top: 5px;
+}
+@media only screen and (max-width: 1000px) {
+    .side-bar{
+        visibility: hidden;
+    }
+}
+</style>
+
+<div class="side-bar" dir="auto">
+    <h3 style="text-align: center;">Menu:</h3>
+    <div class="border-top"></div>
+    <ul >
+        <li><button class="btn btn-secondary">#News</button></li>
+        <li><button class="btn btn-secondary">#Foods</button></li>
+        <li><button class="btn btn-secondary">#Party</button></li>
+        <li><button class="btn btn-secondary">#Clubs</button></li>
+    </ul>
+
+    <div class="border-top"></div>
+
+    <div class="Fantastic">
+        <p style="text-align: center;">When is BirthDay:</p>
+        <p style="text-align: center;">SaturDay, July 13, 1997</p>
+    </div>
+
+    <div class="border-top"></div>
+    <div class="Setting">
+        <h3 style="text-align: center;">Settings:</h3>
+        <ul>
+            <li><button class="btn btn-primary">Profile Setting</button></li>
+            <li><button class="btn btn-primary">Login</button></li>
+            <li><button class="btn btn-primary">Register</button></li>
+            <li><button class="btn btn-primary">Logout</button></li>
+        </ul>
+    </div>
+    <div class="border-top">
+        <div class="profile">
+            <h3 style="text-align: center;">Profile:</h3>
+
+            <ul>
+                <li><button class="btn btn-warning">Profile</button></li>
+                <li><button class="btn btn-warning">Notifications</button></li>
+                <li><button class="btn btn-warning">Create Post</button></li>
+            </ul>
+        </div>
+    </div>
+</div>

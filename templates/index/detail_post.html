@@ -1,0 +1,89 @@
+{% extends '../base.html' %}
+{% block title %}Detail Post{% endblock %}
+{% block body %}
+{% include '../nav_right.html' %}
+
+
+<div class="container">
+    <br>
+      <div class="card" style="box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px; ">
+        <div class="flex" style="display: flex;">
+          <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
+            <center><span style="color: white;">{{md.user.username|slice:1}}</span></center>
+          </div>
+          <strong style="margin-top: 30px;">@{{md.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
+          <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
+        </div>
+        <div class="texts">
+          <p style="text-wrap:pretty; margin: 30px;" dir="auto">
+            {{md.title}}
+          </p>
+          <p style="text-wrap:pretty; margin: 40px; " dir="auto">
+            {{md.desc}}
+          </p>
+        </div>
+        <div class="date-like">
+          <span style="margin: 10px;">{{md.date}}</span>
+
+            <span style="float:right; margin-right:10px;" class="like">
+              <form method="post" action="{% url 'like_post' md.id %}">
+                {% csrf_token %}
+                <button type="submit" style="border: none; background-color: white;">
+                    {% if md.id in liked_posts %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color:brown;" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color:brown;" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg>
+                    {% endif %}
+                </button>
+                <span>{{md.like_count}}</span>
+            </form>
+            </span>
+
+        </div>
+        <div class="border-top"></div><br>
+        <center>
+            <form action="{% url 'detail_post' md.id %}" method="post">
+                <div class="comments" style="max-width: 550px; margin: 5px; display: flex; flex-direction: row;">
+                    {% csrf_token %}
+                    {{form.text}}
+                    <input type="submit" value="submit comment" style="margin-left: 10px; background-color: rgb(61, 61, 212); color: white; border-radius: 10px;" class="btn">
+                </div>
+            </form>
+      </center>
+        <br>
+      </div>
+
+
+      <br><br><br>
+      <h4 style="text-shadow: 0 0 14px white; color: white; margin-left: 30px;">Comments From Pepole :</h4>
+      <div class="border-top" style="max-width: 600px;"></div>
+      <br>
+      {% for comments in comment_md %}
+      <div class="card" style="box-shadow: 0 0 5px white; max-width: 600px; border-radius: 0%;">
+    
+        <div class="flex" style="display: flex;">
+          <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
+            <center><span style="color: white;">{{comments.user.username|slice:1}}</span></center>
+          </div>
+          <strong style="margin-top: 30px;">@{{comments.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
+          <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
+        </div>
+        <div class="texts">
+
+          <p style="text-wrap:pretty; margin: 40px; " dir="auto">
+            {{comments.text}}
+          </p>
+        </div>
+        <div class="date">
+          <span style="margin: 10px;">{{comments.date}}</span>
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+      <br>
+</div>
+{% endblock %}

@@ -38,7 +38,7 @@ def like_post(request, post_id):
     like, created = models.Like.objects.get_or_create(user=request.user, post=post)
     if not created:
         like.delete()
-    return redirect('index')
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
@@ -54,3 +54,27 @@ def edit_post(request,pk):
         return redirect("index")
     form = forms.CreationPost(instance=md)
     return render(request,"index/edit_post.html",{"form":form})
+
+
+
+
+
+@login_required
+def detail_post(request,pk):
+    md = models.Post.objects.get(pk=pk)
+    comment_md = models.Comment.objects.filter(user=request.user,post=md).order_by("-date")
+    liked_posts = []
+    if request.user.is_authenticated:
+        liked_posts = request.user.like_set.values_list('post_id', flat=True)
+    if request.method == "POST":
+        form = forms.CommentForm(request.POST or None)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = md
+            comment.save()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    form = forms.CommentForm()
+    return render(request,"index/detail_post.html",{"form":form,"md":md,'liked_posts': liked_posts,"comment_md":comment_md})
+
+

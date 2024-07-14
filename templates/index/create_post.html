@@ -2,6 +2,13 @@
 {% block title %}Create Post{% endblock %}
 {% block body %}
 <style>
+    *{
+        color: white;
+    }
+    .rules li{
+        color: black;
+    }
+
     .title{
         text-align: auto;
         width: 400px;
@@ -12,6 +19,7 @@
         width: 400px;
         margin: 10px;
     }
+    
 </style>
 
 <br><br><br>
@@ -20,8 +28,8 @@
     <br>
     <center><h1>Create Post:</h1></center>
     <div class="d-flex flex-wrap flex-md-nowrap">
-        <div class="card m-3" style="height: fit-content; color: rgb(48, 48, 48); width: fit-content; padding: 10px; background-color: rgb(168, 177, 186);">
-            <center><h1>Rules:</h1></center>
+        <div class="card m-3 rules" style="height: fit-content; color: rgb(48, 48, 48); width: fit-content; padding: 10px; background-color: rgb(168, 177, 186);">
+            <center><h1 style="color: black;">Rules:</h1></center>
             <ul>
                 <li>Discussions about religion are strictly prohibited</li>
                 <li>Discussing gender and 18+ is prohibited. If found, it will be checked for legality</li>

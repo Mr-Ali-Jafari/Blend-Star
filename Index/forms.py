@@ -15,3 +15,12 @@ class LikeForm(forms.ModelForm):
     class Meta:
         model = models.Like
         fields = []
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = models.Comment
+        exclude = ["user","post"]
+        widgets = {
+            "text": forms.TextInput(attrs={"class":"form-control text-comment"}),
+        }
