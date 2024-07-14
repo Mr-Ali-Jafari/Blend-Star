@@ -1,48 +1,40 @@
 {% extends '../base.html' %}
-{% block title %}Home{% endblock %}
-{% load static %}
+{% block title %}profile detail{% endblock %}
 {% block body %}
-{% include '../nav_right.html' %}
-<style>
-  .pepole img{
-    width: 50px;
-    position: absolute;
-    border-radius: 100%;
-    box-shadow: 0 0 10px white;
-  }
 
-</style>
-
-<br><br><br>
+<div class="card" style="height: 170px; border-radius: 0;">
 
 
-<div class="container">
+    <div class="img-name">
+        {% if request.user.profile.picture %}
+        <img src="{{request.user.profile.picture.url}}" alt="" style=" max-width: 200px; max-height: 400px; margin: 20px; border-radius: 10px; ">
+        {% else %}
+        <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
+            <center><span style="color: white;">{{request.user.profile.user.username|slice:1}}</span></center>
+          </div>
+        {% endif %}
+        
+        <strong style="position: absolute; margin-top: 30px;">@{{request.user.profile.user.username}} | {{request.user.profile.first_name}} {{request.user.profile.last_name}}</strong>
 
-
-
-
-        <h1 style="color: white; text-shadow: 0 0 14px white;">Hi Welcome Again !!!</h1>
-        <br>
-        <div class="pepole">
-          <img id="1i"  src="{% static 'profiles/1.webp' %}" alt="">
-          <img id="2i" style="margin-left: 30px;" src="{% static 'profiles/2.jpeg' %}" alt="">
-          <img id="3i" style="margin-left: 60px;" src="{% static 'profiles/3.webp' %}" alt="">
-          <img id="4i" style="margin-left: 90px;" src="{% static 'profiles/4.avif' %}" alt="">
-        </div>
-        <br><br><br>
-        <div class="card" style="box-shadow: 0 0 14px white; max-width: 450px; display: flex; flex-direction: row;">
-          <span style="font-size: large; padding: 30px;">Do you want create a new post?? </span>
-          <a style="margin-top: auto; margin-bottom: auto;" href="{% url 'create_post' %}"><button style="max-width: fit-content; height: fit-content;  padding: 10px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white;">Create a Post</button></a>
-        </div>
-
-    <br><br>
+    </div>
 
 
 
+</div>
+<br><br>
+<br>
+<h3 style="color: white; text-align: center;">{{request.user.profile.desc}}</h3>
+<h5 style="color: white; text-align: center;">birthday: {{request.user.profile.birthday}}</h5>
+<p style="color: white; text-align: center;">Gender: {{request.user.profile.gender}}</p>
 
-    {% for i in md %}
+
+<br><br>
+
+<div class="container-fluid">
+    <div class="row">
+{% for i in md %}
     <br>
-      <div class="card" style="box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px;">
+      <div class="card" style=" margin: auto; box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px;">
         <div class="flex" style="display: flex;">
           {% if request.user.profile.picture %}
           <img src="{{request.user.profile.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
@@ -54,7 +46,6 @@
           </div>
           {% endif %}
           <strong style="margin-top: 30px;">@{{request.user.profile.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
-          <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
         </div>
         <div class="texts">
           <p style="text-wrap:pretty; margin: 30px;" dir="auto">
@@ -98,11 +89,7 @@
         <br>
       </div>
     {% endfor %}
-
 </div>
-<br>
-
-
-
-
+</div>
+<br><br>
 {% endblock %}

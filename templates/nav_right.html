@@ -9,6 +9,7 @@
     margin-right: 30px;
     border-radius: 10px;
     box-shadow: 0 0 14px white;
+
 }
 
 li{
@@ -35,15 +36,15 @@ li{
     <div class="border-top"></div>
 
     <div class="Fantastic">
-        <p style="text-align: center;">When is BirthDay:</p>
-        <p style="text-align: center;">SaturDay, July 13, 1997</p>
+        <p style="text-align: center;">When is your BirthDay:</p>
+        <p style="text-align: center;">{{request.user.profile.birthday}}</p>
     </div>
 
     <div class="border-top"></div>
     <div class="Setting">
         <h3 style="text-align: center;">Settings:</h3>
         <ul>
-            <li><button class="btn btn-primary">Profile Setting</button></li>
+            <li><button class="btn btn-primary"><a href="{% url 'c_e_profile' %}" style="text-decoration: none; color: white;">Profile Setting</a></button></li>
             <li><button class="btn btn-primary">Login</button></li>
             <li><button class="btn btn-primary">Register</button></li>
             <li><button class="btn btn-primary">Logout</button></li>
@@ -54,7 +55,7 @@ li{
             <h3 style="text-align: center;">Profile:</h3>
 
             <ul>
-                <li><button class="btn btn-warning">Profile</button></li>
+                <li><button class="btn btn-warning"><a style="text-decoration: none; color: black;" href="{% url 'profile_detail' request.user.profile.id %}">Profile</a></button></li>
                 <li><button class="btn btn-warning">Notifications</button></li>
                 <li><button class="btn btn-warning">Create Post</button></li>
             </ul>

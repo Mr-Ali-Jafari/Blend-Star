@@ -1,0 +1,16 @@
+{% extends '../base.html' %}
+{% block title %}create or edit profile{% endblock %}
+{% block body %}
+{% include "../nav_right.html" %}
+
+
+<div class="card" style="border-radius: 10px; box-shadow: 0 0 15px white; max-width: 600px; margin: 30px; padding: 30px;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn" style="background-color: rgb(61, 61, 212); color: white;">create/edit profile</button>
+    </form>
+</div>
+
+
+{% endblock %}
