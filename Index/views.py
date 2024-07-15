@@ -18,7 +18,7 @@ def index(request):
 
 
 
-@login_required
+@login_required(login_url="/account/login/")
 def create_post(request):
     try:
         profile = request.user.profile
@@ -44,7 +44,7 @@ def create_post(request):
 
 
 
-@login_required
+@login_required(login_url="/account/login/")
 def like_post(request, post_id):
     try:
         profile = request.user.profile
@@ -55,10 +55,10 @@ def like_post(request, post_id):
     like, created = models.Like.objects.get_or_create(user=request.user.profile, post=post)
     if not created:
         like.delete()
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect("detail_post",post_id)
 
 
-@login_required
+@login_required(login_url="/account/login/")
 def edit_post(request,pk):
     try:
         profile = request.user.profile
@@ -81,15 +81,11 @@ def edit_post(request,pk):
 
 
 
-@login_required
 def detail_post(request,pk):
-    try:
-        profile = request.user.profile
-    except account_model.Profile.DoesNotExist:
-        return redirect("c_e_profile")
+
     
     md = models.Post.objects.get(pk=pk)
-    comment_md = models.Comment.objects.filter(user=request.user.profile).order_by("-date")
+    comment_md = models.Comment.objects.filter(user=md.user).order_by("-date")
     liked_posts = []
 
     if request.user.is_authenticated:

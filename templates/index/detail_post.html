@@ -8,16 +8,17 @@
     <br>
       <div class="card" style="box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px; ">
         <div class="flex" style="display: flex;">
-            {% if request.user.profile.picture %}
-            <img src="{{request.user.profile.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
+          
+            {% if md.user.picture %}
+            <img src="{{md.user.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
   
   
             {% else %}
             <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
-              <center><span style="color: white;">{{request.user.profile.user.username|slice:1}}</span></center>
+              <center><span style="color: white;">{{md.user.user.username|slice:1}}</span></center>
             </div>
             {% endif %}
-          <strong style="margin-top: 30px;">@{{request.user.profile.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
+          <strong style="margin-top: 30px;">@{{md.user.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
           <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
         </div>
         <div class="texts">
@@ -72,16 +73,16 @@
       <div class="card" style="box-shadow: 0 0 5px white; max-width: 600px; border-radius: 0%;">
     
         <div class="flex" style="display: flex;">
-            {% if request.user.profile.picture %}
-            <img src="{{request.user.profile.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
+            {% if md.user.picture %}
+            <img src="{{md.user.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
   
   
             {% else %}
             <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
-              <center><span style="color: white;">{{request.user.profile.user.username|slice:1}}</span></center>
+              <center><span style="color: white;">{{md.user.user.username|slice:1}}</span></center>
             </div>
             {% endif %}
-          <strong style="margin-top: 30px;">@{{request.user.profile.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
+          <strong style="margin-top: 30px;">@{{md.user.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
           <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
         </div>
         <div class="texts">
@@ -94,8 +95,7 @@
           <span style="margin: 10px;">{{comments.date}}</span>
         </div>
       </div>
-      <br>
       {% endfor %}
-      <br>
 </div>
+<br>
 {% endblock %}

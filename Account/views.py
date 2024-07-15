@@ -3,13 +3,13 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from Index import models as index_model
-
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 @login_required
 def profile_detail(request,pk):
     profile = Profile.objects.filter(user=request.user,pk=pk)
-    posts = index_model.Post.objects.filter(user=request.user.profile)
+    posts = index_model.Post.objects.filter(user=request.user.profile).order_by('-date')
     liked_posts = []
 
     if request.user.is_authenticated:
@@ -48,3 +48,61 @@ def create_or_edit_profile(request):
     }
     
     return render(request, 'account/create_edit_profile.html', context)
+
+
+
+
+
+
+
+
+
+
+
+def login_view(request):
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = AuthenticationForm(request, data=request.POST)
+            if form.is_valid():
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+
+                    return redirect('c_e_profile') 
+        else:
+            form = AuthenticationForm()
+        return render(request, 'account/login.html', {'form': form})
+    else:
+        return redirect('index')
+
+
+
+
+def logout_view(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('index')  
+    else:
+        return redirect('index')
+
+
+
+def register_view(request):
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect('c_e_profile')  
+        else:
+            form = UserCreationForm()
+        return render(request, 'account/register.html', {'form': form})
+    else:
+        return redirect('index')

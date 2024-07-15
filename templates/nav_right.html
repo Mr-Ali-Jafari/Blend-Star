@@ -8,7 +8,6 @@
     right: 0;
     margin-right: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 14px white;
 
 }
 
@@ -36,29 +35,42 @@ li{
     <div class="border-top"></div>
 
     <div class="Fantastic">
+        {% if request.user.profile.user.is_authenticated %}
+        
         <p style="text-align: center;">When is your BirthDay:</p>
         <p style="text-align: center;">{{request.user.profile.birthday}}</p>
+        {% endif %}
     </div>
 
     <div class="border-top"></div>
     <div class="Setting">
         <h3 style="text-align: center;">Settings:</h3>
         <ul>
+          {% if request.user.profile.user.is_authenticated %}
+
             <li><button class="btn btn-primary"><a href="{% url 'c_e_profile' %}" style="text-decoration: none; color: white;">Profile Setting</a></button></li>
-            <li><button class="btn btn-primary">Login</button></li>
-            <li><button class="btn btn-primary">Register</button></li>
-            <li><button class="btn btn-primary">Logout</button></li>
+           {% endif %}
+           {% if not request.user.profile.user.is_authenticated %}
+            <li><button class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'login' %}">Login</a></button></li>
+            <li><button class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'register' %}">Register</a></button></li>
+            {% else %}
+            <li><button class="btn btn-primary"><a style="color: white; text-decoration: none;" href="{% url 'logout' %}">Logout</a></button></li>
+            {% endif %}
         </ul>
     </div>
     <div class="border-top">
         <div class="profile">
+            {% if request.user.profile.user.is_authenticated %}
+
             <h3 style="text-align: center;">Profile:</h3>
 
             <ul>
                 <li><button class="btn btn-warning"><a style="text-decoration: none; color: black;" href="{% url 'profile_detail' request.user.profile.id %}">Profile</a></button></li>
                 <li><button class="btn btn-warning">Notifications</button></li>
-                <li><button class="btn btn-warning">Create Post</button></li>
+                
+                <li><button class="btn btn-warning"><a href="{% url 'create_post' %}" style="color: black; text-decoration: none;">Create Post</a></button></li>
             </ul>
+            {% endif %}
         </div>
     </div>
 </div>

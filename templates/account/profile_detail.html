@@ -30,11 +30,11 @@
 
 <br><br>
 
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid ">
+    <div class="row " style="justify-content: center;">
 {% for i in md %}
     <br>
-      <div class="card" style=" margin: auto; box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px;">
+      <div class="card col-md-6" style="margin: 5px; margin-bottom: 20px; box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px;">
         <div class="flex" style="display: flex;">
           {% if request.user.profile.picture %}
           <img src="{{request.user.profile.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
@@ -91,5 +91,21 @@
     {% endfor %}
 </div>
 </div>
-<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

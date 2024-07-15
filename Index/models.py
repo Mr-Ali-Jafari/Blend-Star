@@ -28,9 +28,4 @@ class Comment(models.Model):
     text = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
 
-class Reply(models.Model):
-    user = models.ForeignKey(account_model.Profile,on_delete=models.CASCADE)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE)
-    comment = models.ForeignKey(Comment,on_delete=models.CASCADE)
-    text = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+

@@ -30,7 +30,7 @@
           <img id="4i" style="margin-left: 90px;" src="{% static 'profiles/4.avif' %}" alt="">
         </div>
         <br><br><br>
-        <div class="card" style="box-shadow: 0 0 14px white; max-width: 450px; display: flex; flex-direction: row;">
+        <div class="card" style=" max-width: 450px; display: flex; flex-direction: row;">
           <span style="font-size: large; padding: 30px;">Do you want create a new post?? </span>
           <a style="margin-top: auto; margin-bottom: auto;" href="{% url 'create_post' %}"><button style="max-width: fit-content; height: fit-content;  padding: 10px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white;">Create a Post</button></a>
         </div>
@@ -42,18 +42,19 @@
 
     {% for i in md %}
     <br>
-      <div class="card" style="box-shadow: 0 0 5px white; max-width: 600px; border-radius: 10px;">
+      <div class="card" style=" max-width: 600px; border-radius: 10px;">
         <div class="flex" style="display: flex;">
-          {% if request.user.profile.picture %}
-          <img src="{{request.user.profile.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
+          
+          {% if i.user.picture %}
+          <img src="{{i.user.picture.url}}" style=" border-radius: 10%; width: 70px; margin: 10px;" alt="pic_profile">
 
 
           {% else %}
           <div class="name-circle" style="padding: 20px; border-radius: 10%; border: solid 1px rgb(61, 61, 212); width: 70px; margin: 10px; background-color: rgb(61, 61, 212);">
-            <center><span style="color: white;">{{request.user.profile.user.username|slice:1}}</span></center>
+            <center><span style="color: white;">{{i.user.user.username|slice:1}}</span></center>
           </div>
           {% endif %}
-          <strong style="margin-top: 30px;">@{{request.user.profile.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
+          <strong style="margin-top: 30px;">@{{i.user.user.username}}</strong><span style="margin-left: 10px; margin-top: auto; margin-bottom: auto;">say it:</span>
           <button class="follow-btn" style=" height: fit-content; margin-top: auto; margin-bottom: auto; margin-left: auto; margin-right: 40px; border-radius: 10px; border: solid 1px rgb(61, 61, 212); background-color: rgb(61, 61, 212); color: white; padding: 10px;">Follow</button>
         </div>
         <div class="texts">
@@ -71,6 +72,7 @@
               <form method="post" action="{% url 'like_post' i.id %}">
                 {% csrf_token %}
                 <button type="submit" style="border: none; background-color: white;">
+                  {% if request.user.is_authenticated %}
                     {% if i.id in liked_posts %}
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color:brown;" class="bi bi-heart-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
@@ -82,6 +84,11 @@
                     {% endif %}
                 </button>
                 <span>{{i.like_count}}</span>
+
+                {% else %}
+                <span>Likes : {{i.like_count}}</span>
+                {% endif %}
+
             </form>
             </span>
 

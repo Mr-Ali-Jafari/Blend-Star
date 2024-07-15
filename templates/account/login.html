@@ -1,0 +1,47 @@
+{% extends '../base.html' %}
+{% block title %}login page{% endblock %}
+{% block body %}
+<style>
+    .content{
+        background-color: white;
+        max-width: 300px;
+        margin-top: 100px;
+        border-radius: 10px;
+        padding: 30px;
+    }
+    #id_username{
+        border-radius: 10px;
+        border: solid 0.1px black;
+        text-align: center;
+    }
+
+    #id_password{
+        border-radius: 10px;
+        border: solid 0.1px black;
+        text-align: center;
+
+    }
+</style>
+
+
+<div class="container-fluid">
+    <center>
+
+        <div class="content">
+            <form action="" method="post">
+
+                {% csrf_token %}
+                    <span>Username:</span><br>
+                    {{form.username}} <br><br>
+                    <span>Password:</span><br>
+                    {{form.password}} <br><br>
+                    <input type="submit" value="Login" class=" btn btn-primary">
+
+            </form>
+        </div>
+    </center>
+
+</div>
+
+
+{% endblock %}
