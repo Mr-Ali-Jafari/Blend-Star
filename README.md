@@ -1,11 +1,11 @@
-# Blend Start 
+# Blend Start (Social Media From Django)
 
 
-<h1>Images:</h1>
+<h2>Images:</h2>
 
 
 
-<h2> (Social Media From Django) </h2>
+
 <p> Models: </p>
 
     Comment Model
@@ -50,4 +50,4 @@
 
 # What is framework this Web application?
   The answer is easy
-  <h1>Django and Bootstrap(Html5 , Css3)</h1>
+  <p>Django and Bootstrap(Html5 , Css3)</p>
