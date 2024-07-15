@@ -3,7 +3,12 @@
 
 <h2>Images:</h2>
 
-<img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/1.png" alt="" style=" max-width:200;">
+<div class="images">
+        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/1.png" alt="" style=" max-width:200;">
+        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/2.png" alt="" style=" max-width:200;">
+        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/3.png" alt="" style=" max-width:200;">
+        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/4.png" alt="" style=" max-width:200;">
+</div>
 
 
 <p> Models: </p>
