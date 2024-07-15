@@ -1,14 +1,6 @@
 # Blend Start (Social Media From Django)
 
 
-<h2>Images:</h2>
-
-<div class="images" style="display:flex;">
-        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/1.png" alt="" width="250">
-        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/2.png" alt="" width="250">
-        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/3.png" alt="" width="250">
-        <img src="https://github.com/Mr-Elliot-0/Blend-Star/blob/main/ScreenShots/4.png" alt="" width="250">
-</div>
 
 
 <p> Models: </p>
