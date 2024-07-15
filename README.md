@@ -48,3 +48,11 @@
 # What is framework this Web application?
   The answer is easy
   <p>Django and Bootstrap(Html5 , Css3)</p>
+
+
+# How To Run (Windows) CMD:
+        pip install virtualenv
+        virtualenv env
+        .\env\Script\activate\
+        pip install -r requirements.txt
+        py manage.py runserver
